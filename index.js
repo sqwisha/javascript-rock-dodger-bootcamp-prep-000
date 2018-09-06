@@ -13,7 +13,6 @@ var gameInterval = null;
 function checkCollision(rock) {
 
   const top = positionToInteger(rock.style.top);
-  console.log(top);
 
   if (top > 360) {
     const dodgerLeftEdge = positionToInteger(DODGER.style.left);
@@ -46,7 +45,6 @@ function createRock(x) {
     rock.style.top = `${top += 2}px`;
 
     if (checkCollision(rock)) {
-      console.log('executed endGame');
       window.cancelAnimationFrame(moveRock);
       endGame();
       return;
@@ -54,12 +52,10 @@ function createRock(x) {
 
     else if (top < GAME_HEIGHT - 20) {
       window.requestAnimationFrame(moveRock);
-      console.log('keep moving rock');
     }
 
     else if ( top >= GAME_HEIGHT - 20) {
       rock.remove();
-      console.log('removed rock from DOM');
     }
   }
 
@@ -67,7 +63,6 @@ function createRock(x) {
 
   ROCKS.push(rock);
 
-  console.log(rock);
   return rock;
 }
 
