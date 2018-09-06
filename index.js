@@ -63,7 +63,7 @@ function createRock(x) {
     }
   }
 
-  moveRock();
+  window.requestAnimationFrame(moveRock);
 
   ROCKS.push(rock);
 
@@ -73,7 +73,7 @@ function createRock(x) {
 
 
 function endGame() {
-  GAME.removeEventListener('keydown', moveDodger);
+  window.removeEventListener('keydown', moveDodger);
   clearInterval(gameInterval);
   ROCKS.forEach(function(rock) { 
     rock.remove();
