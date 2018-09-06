@@ -47,7 +47,9 @@ function createRock(x) {
 
     if (checkCollision(rock)) {
       console.log('executed endGame');
-      return endGame();
+      window.cancelAnimationFrame(moveRock);
+      endGame();
+      return;
     }
 
     else if (top < GAME_HEIGHT - 20) {
@@ -61,7 +63,7 @@ function createRock(x) {
     }
   }
 
-  window.requestAnimationFrame(moveRock);
+  moveRock();
 
   ROCKS.push(rock);
 
@@ -71,11 +73,11 @@ function createRock(x) {
 
 
 function endGame() {
+  GAME.removeEventListener('keydown', moveDodger);
   clearInterval(gameInterval);
   ROCKS.forEach(function(rock) { 
     rock.remove();
     });
-  GAME.removeEventListener('keydown', moveDodger);
   return alert('YOU LOSE!');
 }
 
